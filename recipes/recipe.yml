@@ -17,13 +17,18 @@ modules:
       - source: system
         destination: / # copies files/system/* (* means everything inside it) into your image's root folder /
 
+  - type: script
+    scripts:
+      - install_surface-kernel.sh
+
   - type: dnf
     repos:
       copr:
         - atim/starship
+      files:
+        - linux-surface.repo
     install:
       packages:
-        - micro
         - starship
         - fish
     remove:
