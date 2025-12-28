@@ -23,10 +23,12 @@ modules:
         - atim/starship
       files:
         - linux-surface.repo
+        - https://pkgs.tailscale.com/stable/fedora/tailscale.repo
     install:
       packages:
         - starship
         - fish
+        - tailscale
     remove:
       packages:
         # example: removing firefox (in favor of the flatpak)
