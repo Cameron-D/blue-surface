@@ -29,6 +29,9 @@ modules:
         - starship
         - fish
         - tailscale
+        - plasma-keyboard
+        - kcm-plasma-keyboard
+        - hunspell-en
     remove:
       packages:
         # example: removing firefox (in favor of the flatpak)
