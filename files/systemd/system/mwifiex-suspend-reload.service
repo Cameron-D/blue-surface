@@ -1,0 +1,14 @@
+[Unit]
+Description=Reload mwifiex driver when sleeping
+Before=sleep.target
+StopWhenUnneeded=yes
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/sbin/modprobe -r mwifiex_pcie mwifiex
+ExecStop=/usr/sbin/modprobe mwifiex
+ExecStop=/usr/sbin/modprobe mwifiex_pcie
+
+[Install]
+WantedBy=sleep.target
