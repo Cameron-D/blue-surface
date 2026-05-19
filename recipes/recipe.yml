@@ -57,6 +57,11 @@ modules:
     kargs:
     - drm.edid_firmware=eDP-1:edid/sp4-edid.bin
 
+  - type: systemd
+    system:
+      enabled:
+        - mwifiex-suspend-reload.service
+
   - type: initramfs # Regenerate initramfs due to our dracut changes and additional firmware file
 
   - type: signing # this sets up the proper policy & signing files for signed images to work fully
