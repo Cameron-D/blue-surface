@@ -1,6 +1,8 @@
+# linux-surface has no f44 repo but the f43 packages should install
+# only libwacom conflicts but I don't care about pen support
 [linux-surface]
 name=linux-surface
-baseurl=https://pkg.surfacelinux.com/fedora/f42/
+baseurl=https://pkg.surfacelinux.com/fedora/f43/
 enabled=1
 skip_if_unavailable=1
 gpgkey=https://raw.githubusercontent.com/linux-surface/linux-surface/master/pkg/keys/surface.asc

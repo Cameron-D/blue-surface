@@ -9,7 +9,7 @@ dnf5 versionlock delete kernel{,-core,-modules,-modules-core,-modules-extra,-too
 
 # Add the Surface Linux repo
 # see recipe /files/dnf/surface-linux.repo
-# hardcoded the repo for F43 compatibility
+# hardcoded to the f43 repo: no f44 repo exists yet
 ## dnf5 config-manager \
 ##     addrepo --from-repofile=https://pkg.surfacelinux.com/fedora/linux-surface.repo
 
