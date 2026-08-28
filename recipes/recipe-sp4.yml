@@ -1,0 +1,36 @@
+---
+# yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
+# image will be published to ghcr.io/<user>/<name>
+name: blue-surface-sp4
+# description will be included in the image's metadata
+description: Kinoite with Surface drivers for the Surface Pro 4, plus a few packages I use
+
+# the base image to build on top of (FROM) and the version tag to use
+base-image: ghcr.io/ublue-os/kinoite-main
+image-version: 42 # latest is also supported if you want new updates ASAP
+
+# module configuration, executed in order
+# you can include multiple instances of the same module
+modules:
+  - from-file: common.yml
+
+  # custom EDID to runrun screen at 48hz to reduce flicker
+  - type: files
+    files:
+      - source: sp4
+        destination: /
+  - type: script
+    scripts:
+      - install_sp4_edid.sh
+  - type: kargs
+    kargs:
+    - drm.edid_firmware=eDP-1:edid/sp4-edid.bin
+
+  # reload mwifiex around suspend, otherwise wifi stops working after sleep
+  - type: systemd
+    system:
+      enabled:
+        - mwifiex-suspend-reload.service
+
+  - type: initramfs
+  - type: signing

@@ -1,11 +1,15 @@
 # blue-surface &nbsp; [![bluebuild build badge](https://github.com/cameron-d/blue-surface/actions/workflows/build.yml/badge.svg)](https://github.com/cameron-d/blue-surface/actions/workflows/build.yml)
 
-A custom build of Fedora Kinoite made specifically for my Surface Pro 4.
+A custom build of Fedora Kinoite made specifically for my Surface Pro 4 and testing for SP8.
 
 Includes:
 - Surface Linux Drivers for touchscreen (Not Pen)
 - Custom EDID file to limit refresh rate to 48Hz to reduce flicker.
 - Applications: Firefox, Fish, Starship, Tailscale.
+
+Surface Pro 4 only (`blue-surface-sp4`):
+- Custom EDID file to limit refresh rate to 48Hz to reduce flicker.
+- Reloads the Marvell `mwifiex` Wi-Fi driver around suspend to work around firmware bugs.
 
 ## Installation
 
@@ -16,7 +20,7 @@ To rebase an existing atomic Fedora installation to the latest build:
 
 - First rebase to the unsigned image, to get the proper signing keys and policies installed:
   ```
-  rpm-ostree rebase ostree-unverified-registry:ghcr.io/cameron-d/blue-surface:latest
+  rpm-ostree rebase ostree-unverified-registry:ghcr.io/cameron-d/blue-surface-sp8:latest
   ```
 - Reboot to complete the rebase:
   ```
@@ -24,7 +28,7 @@ To rebase an existing atomic Fedora installation to the latest build:
   ```
 - Then rebase to the signed image, like so:
   ```
-  rpm-ostree rebase ostree-image-signed:docker://ghcr.io/cameron-d/blue-surface:latest
+  rpm-ostree rebase ostree-image-signed:docker://ghcr.io/cameron-d/blue-surface-sp8:latest
   ```
 - Reboot again to complete the installation
   ```
@@ -42,5 +46,6 @@ If build on Fedora Atomic, you can generate an offline ISO with the instructions
 These images are signed with [Sigstore](https://www.sigstore.dev/)'s [cosign](https://github.com/sigstore/cosign). You can verify the signature by downloading the `cosign.pub` file from this repo and running the following command:
 
 ```bash
-cosign verify --key cosign.pub ghcr.io/cameron-d/blue-surface
+cosign verify --key cosign.pub ghcr.io/cameron-d/blue-surface-sp4
+cosign verify --key cosign.pub ghcr.io/cameron-d/blue-surface-sp8
 ```

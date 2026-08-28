@@ -2,6 +2,7 @@
 Description=Reload mwifiex driver when sleeping
 Before=sleep.target
 StopWhenUnneeded=yes
+ConditionPathExists=/sys/module/mwifiex_pcie
 
 [Service]
 Type=oneshot

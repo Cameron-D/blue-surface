@@ -1,16 +1,7 @@
 ---
-# yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
-# image will be published to ghcr.io/<user>/<name>
-name: blue-surface
-# description will be included in the image's metadata
-description: Kinoite with Surface drivers and a few packages I use
-
-# the base image to build on top of (FROM) and the version tag to use
-base-image: ghcr.io/ublue-os/kinoite-main
-image-version: 42 # latest is also supported if you want new updates ASAP
-
-# module configuration, executed in order
-# you can include multiple instances of the same module
+# yaml-language-server: $schema=https://schema.blue-build.org/module-list-v1.json
+# Modules shared by every blue-surface image (SP4 and SP8).
+# Device-specific bits live in the per-device recipe-*.yml files.
 modules:
   - type: files
     files:
@@ -37,12 +28,11 @@ modules:
         # example: removing firefox (in favor of the flatpak)
         # "firefox" is the main package, "firefox-langpacks" is a dependency
         - firefox
-        - firefox-langpacks # also remove firefox dependency (not required for all packages, this is a special case)
+        - firefox-langpacks
 
   - type: script
     scripts:
       - install_surface-kernel.sh
-      - install_sp4_edid.sh
 
   - type: default-flatpaks
     configurations:
@@ -52,16 +42,3 @@ modules:
         install: # system flatpaks we want all users to have and not remove
           - org.mozilla.firefox
       - scope: user # Also add Flathub user repo, but no user packages
-
-  - type: kargs
-    kargs:
-    - drm.edid_firmware=eDP-1:edid/sp4-edid.bin
-
-  - type: systemd
-    system:
-      enabled:
-        - mwifiex-suspend-reload.service
-
-  - type: initramfs # Regenerate initramfs due to our dracut changes and additional firmware file
-
-  - type: signing # this sets up the proper policy & signing files for signed images to work fully

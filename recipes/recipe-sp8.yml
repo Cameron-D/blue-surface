@@ -1,0 +1,15 @@
+---
+# yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
+# image will be published to ghcr.io/<user>/<name>
+name: blue-surface-sp8
+# description will be included in the image's metadata
+description: Kinoite with Surface drivers for the Surface Pro 8 (model 1983), plus a few packages I use
+
+# the base image to build on top of (FROM) and the version tag to use
+base-image: ghcr.io/ublue-os/kinoite-main
+image-version: 42 # latest is also supported if you want new updates ASAP
+
+modules:
+  - from-file: common.yml
+  - type: initramfs
+  - type: signing
