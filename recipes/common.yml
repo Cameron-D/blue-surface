@@ -23,6 +23,9 @@ modules:
         - plasma-keyboard
         - kcm-plasma-keyboard
         - hunspell-en
+        # FUSE 2 runtime needed to mount and run AppImages (managed via Gear Lever)
+        - fuse
+        - fuse-libs
     remove:
       packages:
         # example: removing firefox (in favor of the flatpak)
@@ -41,4 +44,5 @@ modules:
         # If no repo information is specified, Flathub will be used by default
         install: # system flatpaks we want all users to have and not remove
           - org.mozilla.firefox
+          - it.mijorus.gearlever # AppImage manager
       - scope: user # Also add Flathub user repo, but no user packages

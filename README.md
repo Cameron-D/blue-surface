@@ -5,7 +5,8 @@ A custom build of Fedora Kinoite made specifically for my Surface Pro 4 and test
 Includes:
 - Surface Linux Drivers for touchscreen (Not Pen)
 - Custom EDID file to limit refresh rate to 48Hz to reduce flicker.
-- Applications: Firefox, Fish, Starship, Tailscale.
+- Applications: Firefox, Fish, Starship, Tailscale, Gear Lever.
+- FUSE 2 support for running AppImages.
 
 Surface Pro 4 only (`blue-surface-sp4`):
 - Custom EDID file to limit refresh rate to 48Hz to reduce flicker.
